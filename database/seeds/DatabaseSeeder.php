@@ -44,8 +44,8 @@ class DatabaseSeeder extends Seeder {
     }
 
     public function run() {
-//        self::seedCatalog();
-        self::seedUsers();       
+       self::seedCatalog();
+       //self::seedUsers();       
         $this->command->info('Tabla catálogo inicializada con datos!');
     }
 

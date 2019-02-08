@@ -30,4 +30,7 @@ class User extends Authenticatable
     public function movies(){
         return $this->belongsToMany(Movie::class);
     }
+    public function genero(){
+       // return $this->hasMany(Genero::class);
+    }
 }
