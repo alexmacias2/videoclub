@@ -12,8 +12,9 @@ class AddIdgeneroToMoviesTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::table('movies', function($table) {
-            $table->string('idgenero', 50)->nullalable()->after('title');
+        Schema::table('movies', function(Blueprint $table) {
+            $table->integer('idgenero')->unsigned()->after('title');
+            $table->foreign('idgenero')->references('id')->on('generos')->onDelete('cascade');
         });
     }
 
