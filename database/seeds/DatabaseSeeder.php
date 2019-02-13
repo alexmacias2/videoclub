@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\Movie;
 use App\User;
+use App\Genero;
+use App\MoviesUser;
 
 class DatabaseSeeder extends Seeder {
 
@@ -11,30 +13,39 @@ class DatabaseSeeder extends Seeder {
      *
      * @return void
      */
-    private function seedUsers(){
+    private function seedUsers() {
         DB::table('users')->delete();
-        $user1= new User;
-        $user1->name='Alejandro';
-        $user1->email='alexmaciasortega@gmail.com';
-        $user1->password=bcrypt('carnual26');
-        $user1->save();  
-        $user2= new User;
-        $user2->name='Luis';
-        $user2->email='luisibañez@gmail.com';
-        $user2->password=bcrypt('1234');
+        $user1 = new User;
+        $user1->name = 'Alejandro';
+        $user1->email = 'alexmaciasortega@gmail.com';
+        $user1->password = bcrypt('carnual26');
+        $user1->save();
+        $user2 = new User;
+        $user2->name = 'Luis';
+        $user2->email = 'luisibañez@gmail.com';
+        $user2->password = bcrypt('1234');
         $user2->save();
-        $user3= new User;
-        $user3->name='Ana';
-        $user3->email='anajana@gmail.com';
-        $user3->password=bcrypt('anajana');
+        $user3 = new User;
+        $user3->name = 'Ana';
+        $user3->email = 'anajana@gmail.com';
+        $user3->password = bcrypt('anajana');
         $user3->save();
     }
+
+    private function seedGeneros() {
+        DB::table('generos')->delete();
+        $Genero1 = new Genero();
+        $Genero1->nombregenero='Acción';
+        $Genero1->save();
+    }
+
     private function seedCatalog() {
         DB::table('movies')->delete();
         foreach ($this->arrayPeliculas as $pelicula) {
             $p = new Movie;
             $p->title = $pelicula['title'];
             $p->year = $pelicula['year'];
+            $p->idgenero = $pelicula['idgenero'];
             $p->director = $pelicula['director'];
             $p->poster = $pelicula['poster'];
             $p->rented = $pelicula['rented'];
@@ -43,9 +54,19 @@ class DatabaseSeeder extends Seeder {
         }
     }
 
+    private function seedMovies_Users() {
+        DB::table('movies_users')->delete();
+        $favoritas1 = new MoviesUser();
+        $favoritas1->user_id = 1;
+        $favoritas1->movie_id = 1;
+        $favoritas1->save();
+    }
+
     public function run() {
-       self::seedCatalog();
-       //self::seedUsers();       
+        //self::seedCatalog();
+        //self::seedUsers();
+        //self::seedGeneros();
+        self::seedMovies_Users();
         $this->command->info('Tabla catálogo inicializada con datos!');
     }
 
@@ -53,6 +74,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'El padrino',
             'year' => '1972',
+            'idgenero'=>1,
             'director' => 'Francis Ford Coppola',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMjEyMjcyNDI4MF5BMl5BanBnXkFtZTcwMDA5Mzg3OA@@._V1_SX214_AL_.jpg',
             'rented' => false,
@@ -61,6 +83,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'El Padrino. Parte II',
             'year' => '1974',
+            'idgenero'=>1,
             'director' => 'Francis Ford Coppola',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BNDc2NTM3MzU1Nl5BMl5BanBnXkFtZTcwMTA5Mzg3OA@@._V1_SX214_AL_.jpg',
             'rented' => false,
@@ -69,6 +92,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'La lista de Schindler',
             'year' => '1993',
+            'idgenero'=>1,
             'director' => 'Steven Spielberg',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMzMwMTM4MDU2N15BMl5BanBnXkFtZTgwMzQ0MjMxMDE@._V1_SX214_AL_.jpg',
             'rented' => false,
@@ -77,6 +101,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Pulp Fiction',
             'year' => '1994',
+            'idgenero'=>1,
             'director' => 'Quentin Tarantino',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMjE0ODk2NjczOV5BMl5BanBnXkFtZTYwNDQ0NDg4._V1_SY317_CR4,0,214,317_AL_.jpg',
             'rented' => true,
@@ -85,6 +110,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Cadena perpetua',
             'year' => '1994',
+            'idgenero'=>1,
             'director' => 'Frank Darabont',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX214_AL_.jpg',
             'rented' => true,
@@ -93,6 +119,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'El golpe',
             'year' => '1973',
+            'idgenero'=>1,
             'director' => 'George Roy Hill',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTY5MjM1OTAyOV5BMl5BanBnXkFtZTgwMDkwODg4MDE@._V1._CR52,57,915,1388_SX214_AL_.jpg',
             'rented' => false,
@@ -101,6 +128,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'La vida es bella',
             'year' => '1997',
+            'idgenero'=>1,
             'director' => 'Roberto Benigni',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTQwMTM2MjE4Ml5BMl5BanBnXkFtZTgwODQ2NTYxMTE@._V1_SX214_AL_.jpg',
             'rented' => true,
@@ -109,6 +137,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Uno de los nuestros',
             'year' => '1990',
+            'idgenero'=>1,
             'director' => 'Martin Scorsese',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTY2OTE5MzQ3MV5BMl5BanBnXkFtZTgwMTY2NTYxMTE@._V1_SX214_AL_.jpg',
             'rented' => false,
@@ -117,6 +146,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Alguien voló sobre el nido del cuco',
             'year' => '1975',
+            'idgenero'=>1,
             'director' => 'Milos Forman',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTk5OTA4NTc0NF5BMl5BanBnXkFtZTcwNzI5Mzg3OA@@._V1_SY317_CR12,0,214,317_AL_.jpg',
             'rented' => false,
@@ -125,6 +155,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'American History X',
             'year' => '1998',
+            'idgenero'=>1,
             'director' => 'Tony Kaye',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMjMzNDUwNTIyMF5BMl5BanBnXkFtZTcwNjMwNDg3OA@@._V1_SY317_CR17,0,214,317_AL_.jpg',
             'rented' => false,
@@ -133,6 +164,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Sin perdón',
             'year' => '1992',
+            'idgenero'=>1,
             'director' => 'Clint Eastwood',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTkzNTc0NDc4OF5BMl5BanBnXkFtZTcwNTY1ODg3OA@@._V1_SY317_CR5,0,214,317_AL_.jpg',
             'rented' => false,
@@ -141,6 +173,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'El precio del poder',
             'year' => '1983',
+            'idgenero'=>1,
             'director' => 'Brian De Palma',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMjAzOTM4MzEwNl5BMl5BanBnXkFtZTgwMzU1OTc1MDE@._V1_SX214_AL_.jpg',
             'rented' => false,
@@ -149,6 +182,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'El pianista',
             'year' => '2002',
+            'idgenero'=>1,
             'director' => 'Roman Polanski',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTc4OTkyOTA3OF5BMl5BanBnXkFtZTYwMDIxNjk5._V1_SX214_AL_.jpg',
             'rented' => true,
@@ -157,6 +191,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Seven',
             'year' => '1995',
+            'idgenero'=>1,
             'director' => 'David Fincher',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTQwNTU3MTE4NF5BMl5BanBnXkFtZTcwOTgxNDM2Mg@@._V1_SX214_AL_.jpg',
             'rented' => true,
@@ -165,6 +200,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'El silencio de los corderos',
             'year' => '1991',
+            'idgenero'=>1,
             'director' => 'Jonathan Demme',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTQ2NzkzMDI4OF5BMl5BanBnXkFtZTcwMDA0NzE1NA@@._V1_SX214_AL_.jpg',
             'rented' => false,
@@ -173,6 +209,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'La naranja mecánica',
             'year' => '1971',
+            'idgenero'=>1,
             'director' => 'Stanley Kubrick',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTY3MjM1Mzc4N15BMl5BanBnXkFtZTgwODM0NzAxMDE@._V1_SY317_CR0,0,214,317_AL_.jpg',
             'rented' => false,
@@ -181,6 +218,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'La chaqueta metálica',
             'year' => '1987',
+            'idgenero'=>1,
             'director' => 'Stanley Kubrick',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMjA4NzY4ODk4Nl5BMl5BanBnXkFtZTgwOTcxNTYxMTE@._V1_SX214_AL_.jpg',
             'rented' => true,
@@ -189,6 +227,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Blade Runner',
             'year' => '1982',
+            'idgenero'=>1,
             'director' => 'Ridley Scott',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTA4MDQxNTk2NDheQTJeQWpwZ15BbWU3MDE2NjIyODk@._V1_SX214_AL_.jpg',
             'rented' => true,
@@ -197,6 +236,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'Taxi Driver',
             'year' => '1976',
+            'idgenero'=>1,
             'director' => 'Martin Scorsese',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMTQ1Nzg3MDQwN15BMl5BanBnXkFtZTcwNDE2NDU2MQ@@._V1_SY317_CR9,0,214,317_AL_.jpg',
             'rented' => false,
@@ -205,6 +245,7 @@ class DatabaseSeeder extends Seeder {
         array(
             'title' => 'El club de la lucha',
             'year' => '1999',
+            'idgenero'=>1,
             'director' => 'David Fincher',
             'poster' => 'http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_SX214_AL_.jpg',
             'rented' => true,
