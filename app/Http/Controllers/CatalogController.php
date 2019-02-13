@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use App\Genero;
 use Illuminate\Database;
 use Notification;
 
@@ -16,7 +17,8 @@ class CatalogController extends Controller {
 
     public function getShow($id) {
         $movie = Movie::findOrFail($id);
-        return view('catalog.show', array('pelicula' => $movie));
+        $genero = Genero::findOrFail($movie->idgenero);
+        return view('catalog.show', array('pelicula' => $movie,'genero'=>$genero));
     }
 
     public function getCreate() {

@@ -60,6 +60,10 @@ class DatabaseSeeder extends Seeder {
         $favoritas1->user_id = 1;
         $favoritas1->movie_id = 1;
         $favoritas1->save();
+        $favoritas2 = new MoviesUser();
+        $favoritas2->user_id = 1;
+        $favoritas2->movie_id = 2;
+        $favoritas2->save();
     }
 
     public function run() {
