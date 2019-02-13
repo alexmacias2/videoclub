@@ -8,6 +8,7 @@ use App\Genero;
 use Illuminate\Database;
 use Notification;
 
+
 class CatalogController extends Controller {
 
     public function getIndex() {
