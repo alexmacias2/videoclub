@@ -14,7 +14,8 @@
 
         <h1 style="min-height:45px;margin:5px 0 10px 0">
             {{$pelicula->title}}
-        </h1 ></br>
+            <button  class="btn btn-warning" style="display:inline"><span class="far fa-star"/> Añadir a favoritos {{$userid}}</button>
+        </h1 >
         <h4 style="min-height:15px;margin:5px 0 10px 0">Año: {{$pelicula->year}}</h4>
         <h4 style="min-height:15px;margin:5px 0 10px 0">Director: {{$pelicula->director}}</h4></br>
         <h4 style="min-height:15px;margin:5px 0 10px 0">Género: {{$genero->nombregenero}}</h4></br>

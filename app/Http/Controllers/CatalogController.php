@@ -20,6 +20,7 @@ class CatalogController extends Controller {
     public function getShow($id) {
         $movie = Movie::findOrFail($id);
         $genero = Genero::findOrFail($movie->idgenero);
+        $userid=auth()->user()->id;
         return view('catalog.show', array('pelicula' => $movie,'genero'=>$genero));
     }
 
