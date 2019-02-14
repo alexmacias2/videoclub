@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Genero;
+use App\MoviesUser;
 use Illuminate\Database;
 use Notification;
 
@@ -21,7 +22,7 @@ class CatalogController extends Controller {
         $movie = Movie::findOrFail($id);
         $genero = Genero::findOrFail($movie->idgenero);
         $userid=auth()->user()->id;
-        return view('catalog.show', array('pelicula' => $movie,'genero'=>$genero));
+        return view('catalog.show', array('pelicula' => $movie,'genero'=>$genero,'userid'=>$userid));
     }
 
     public function getCreate() {
@@ -84,7 +85,17 @@ class CatalogController extends Controller {
         $p->delete();
         Notification::success('La pelicula se ha eliminado');
         return redirect('catalog');
-
+    } 
+    
+    public function añadirFavorita(Request $request, $id) {
+        $userid=auth()->user()->id;
+        $movieid=$id;
+        $favorita= new MoviesUser();
+        $favorita->movie_id=$movieid;
+        $favorita->user_id=$userid;
+        $favorita->save();
+        Notification::success('Pelicula añadida a favoritos');
+        return redirect('catalog/show/' . $movieid);
     }
 
 }

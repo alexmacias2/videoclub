@@ -14,7 +14,13 @@
 
         <h1 style="min-height:45px;margin:5px 0 10px 0">
             {{$pelicula->title}}
-            <button  class="btn btn-warning" style="display:inline"><span class="far fa-star"/> Añadir a favoritos {{$userid}}</button>
+            <form action="{{action('CatalogController@añadirFavorita', $pelicula->id)}}" 
+                  method="POST" style="display:inline">
+                {{ method_field('PUT') }}
+                {{ csrf_field() }} 
+                <button  class="btn btn-warning" style="display:inline"><span class="far fa-star"/> Añadir a favoritos</button>
+            </form>
+
         </h1 >
         <h4 style="min-height:15px;margin:5px 0 10px 0">Año: {{$pelicula->year}}</h4>
         <h4 style="min-height:15px;margin:5px 0 10px 0">Director: {{$pelicula->director}}</h4></br>
