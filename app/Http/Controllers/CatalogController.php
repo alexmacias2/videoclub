@@ -93,14 +93,15 @@ class CatalogController extends Controller {
                 ->where('movie_id', '=', $id)
                 ->first();
         if ($existe != null) {
-            Notification::error('La peli ya existe');
+            $existe->delete();
+            Notification::error('La película se ha eliminado de favoritos');
             return redirect('catalog/show/' . $movieid);
         } else {
             $favorita = new MoviesUser();
             $favorita->movie_id = $movieid;
             $favorita->user_id = $userid;
             $favorita->save();
-            Notification::success('La peli se ha añadido a favoritos');
+            Notification::success('La película se ha añadido a favoritos');
             return redirect('catalog/show/' . $movieid);
         }
 
