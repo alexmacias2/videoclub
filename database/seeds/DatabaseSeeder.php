@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder {
         //self::seedCatalog();
         //self::seedUsers();
         //self::seedGeneros();
-        self::seedMovies_Users();
+        //self::seedMovies_Users();
         $this->command->info('Tabla catálogo inicializada con datos!');
     }
 
