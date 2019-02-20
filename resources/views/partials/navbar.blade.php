@@ -20,6 +20,11 @@
                             <span>&#10010</span> Nueva película
                         </a>
                     </li>
+                    <li class="nav-item {{  Request::is('catalog/favoritas') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{url('/catalog/favoritas')}}">
+                            <span>&#x2605;</span> Películas favoritas
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav navbar-right">
