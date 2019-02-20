@@ -20,7 +20,14 @@ class CatalogController extends Controller {
         $movie = Movie::findOrFail($id);
         $genero = Genero::findOrFail($movie->idgenero);
         $userid = auth()->user()->id;
-        return view('catalog.show', array('pelicula' => $movie, 'genero' => $genero, 'userid' => $userid));
+        if(MoviesUser::where('user_id', '=', $userid)
+                ->where('movie_id', '=', $id)
+                ->first()!=null){
+            $favorita=true;
+        }else{
+            $favorita=false;
+        }
+        return view('catalog.show', array('pelicula' => $movie, 'genero' => $genero, 'userid' => $userid,'favorita'=>$favorita));
     }
 
     public function getCreate() {

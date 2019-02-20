@@ -14,12 +14,21 @@
 
         <h1 style="min-height:45px;margin:5px 0 10px 0">
             {{$pelicula->title}}
+            @if($favorita)
             <form action="{{action('CatalogController@añadirFavorita', $pelicula->id)}}" 
                   method="POST" style="display:inline">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }} 
-                <button  class="btn btn-warning" style="display:inline"><span class="far fa-star"/> Añadir a favoritos</button>
+                <button  class="btn btn-danger" style="display:inline"><span class="far fa-star"/>Eliminar de favoritas</button>
             </form>
+            @else
+            <form action="{{action('CatalogController@añadirFavorita', $pelicula->id)}}" 
+                  method="POST" style="display:inline">
+                {{ method_field('PUT') }}
+                {{ csrf_field() }} 
+                <button  class="btn btn-warning" style="display:inline"><span class="far fa-star"/>Añadir a favoritas</button>
+            </form>
+            @endif
 
         </h1 >
         <h4 style="min-height:15px;margin:5px 0 10px 0">Año: {{$pelicula->year}}</h4>
