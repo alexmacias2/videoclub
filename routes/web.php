@@ -21,11 +21,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('catalog/create', 'CatalogController@postCreate');
     Route::put('catalog/rent/{id}', 'CatalogController@putRent');
     Route::put('catalog/return/{id}', 'CatalogController@putReturn');
-    Route::put('catalog/compruebaFavorita/{id}', 'CatalogController@compruebaFavorita');
     Route::put('catalog/pintaBoton/{id}', 'CatalogController@pintaBoton');
     Route::put('catalog/añadirFavorita/{id}', 'CatalogController@añadirFavorita');
     Route::delete('catalog/delete/{id}', 'CatalogController@deleteMovie');
     Route::put('catalog/edit/{id}', 'CatalogController@putEdit');
+    Route::get('catalog/indexFavoritas', 'CatalogController@getFavoritas');
     
    
 });

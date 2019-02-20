@@ -16,18 +16,30 @@ class CatalogController extends Controller {
         return view('catalog.index', array('arrayPeliculas' => $movies));
     }
 
+    public function getFavoritas() {
+        $userid = auth()->user()->id;
+        $moviesFavoritas = MoviesUser::where('user_id', '=', $userid)->get();
+        $movies = array();
+        foreach ($moviesFavoritas as &$valor) {
+            $aux = Movie::find($valor->movie_id);
+            array_push($movies, $aux);
+        }
+
+        return view('catalog.indexFavoritas', array('arrayPeliculas' => $movies));
+    }
+
     public function getShow($id) {
         $movie = Movie::findOrFail($id);
         $genero = Genero::findOrFail($movie->idgenero);
         $userid = auth()->user()->id;
-        if(MoviesUser::where('user_id', '=', $userid)
-                ->where('movie_id', '=', $id)
-                ->first()!=null){
-            $favorita=true;
-        }else{
-            $favorita=false;
+        if (MoviesUser::where('user_id', '=', $userid)
+                        ->where('movie_id', '=', $id)
+                        ->first() != null) {
+            $favorita = true;
+        } else {
+            $favorita = false;
         }
-        return view('catalog.show', array('pelicula' => $movie, 'genero' => $genero, 'userid' => $userid,'favorita'=>$favorita));
+        return view('catalog.show', array('pelicula' => $movie, 'genero' => $genero, 'userid' => $userid, 'favorita' => $favorita));
     }
 
     public function getCreate() {
@@ -111,7 +123,6 @@ class CatalogController extends Controller {
             Notification::success('La película se ha añadido a favoritos');
             return redirect('catalog/show/' . $movieid);
         }
-
     }
 
 }
