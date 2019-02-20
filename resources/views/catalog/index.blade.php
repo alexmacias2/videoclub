@@ -1,6 +1,41 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="navbar navbar-nav">
+    <nav class="list-group"> 
+        <ul class="nav">
+            <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
+                <li>
+                    <a href="#" class="list-group-item">
+                        Acción
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item">
+                        Comedia
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item">
+                        Terror
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item">
+                        Drama
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item">
+                        Ciencia Ficción
+                    </a>
+                </li>
+            </ul>
+        </ul>
+    </nav>
+</div>
+
+
 
 <div class="row">
 
