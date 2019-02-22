@@ -124,5 +124,10 @@ class CatalogController extends Controller {
             return redirect('catalog/show/' . $movieid);
         }
     }
+    
+    public function getIndexGenero($id){
+        $moviesGenero = Movie::where('idgenero', '=', $id)->get();
+        return view('catalog.indexGenero', array('arrayPeliculas' => $moviesGenero));
+    }
 
 }

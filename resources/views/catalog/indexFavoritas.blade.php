@@ -4,7 +4,7 @@
 
 <div class="row">
 
-    @foreach( $favoritas as $favorita )
+    @foreach( $arrayPeliculas as $favorita )
     <div class="col-xs-6 col-sm-4 col-md-3 text-center">
         <a href="{{ url('/catalog/show/' . $favorita->id ) }}">
             <img src="{{$favorita->poster}}" style="height:200px"/>

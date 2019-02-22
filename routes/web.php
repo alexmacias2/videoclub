@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('movie/{id?}', 'Movie\MoviesController@showMovie');
     Route::get('catalog', 'CatalogController@getIndex');
     Route::get('catalog/show/{id}', 'CatalogController@getShow');
+    Route::get('catalog/indexGenero/{id}', 'CatalogController@getIndexGenero');
     Route::get('catalog/create', 'CatalogController@getCreate');
     Route::get('catalog/edit/{id}', 'CatalogController@getEdit');
     Route::post('catalog/create', 'CatalogController@postCreate');
