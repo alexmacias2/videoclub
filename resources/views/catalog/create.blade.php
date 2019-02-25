@@ -27,7 +27,7 @@
                     <div>
                         <label for="title">Género</label>
                         <select name="genero">
-                            <option id="1" vaue="1">Acción</option>
+                            <option id="1" value="1">Acción</option>
                             <option id="2" value="2">Terror</option>
                             <option id="3" value="3">Comedia</option>
                             <option id="4" value="4">Drama</option>
