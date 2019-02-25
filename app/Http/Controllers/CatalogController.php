@@ -57,6 +57,7 @@ class CatalogController extends Controller {
         $p->title = $request->input('title');
         $p->year = $request->input('year');
         $p->director = $request->input('director');
+        $p->idgenero=$request->input('genero');
         $p->poster = $request->input('poster');
         $p->rented = $request->input('rented');
         $p->synopsis = $request->input('synopsis');
@@ -72,6 +73,7 @@ class CatalogController extends Controller {
         $p->title = $request->input('title');
         $p->year = $request->input('year');
         $p->director = $request->input('director');
+        $p->idgenero=$request->input('genero');
         $p->poster = $request->input('poster');
         $p->rented = false;
         $p->synopsis = $request->input('synopsis');

@@ -23,6 +23,17 @@
                         <label for="title">Año</label>
                         <input type="text" name="year" id="title" class="form-control" value="{{$pelicula->year}}">
                     </div>
+                    
+                    <div>
+                        <label for="title">Género</label>
+                        <select name="genero">
+                            <option id="1" vaue="1">Acción</option>
+                            <option id="2" value="2">Terror</option>
+                            <option id="3" value="3">Comedia</option>
+                            <option id="4" value="4">Drama</option>
+                            <option id="5" value="5">Ciencia ficción</option>
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <label for="title">Director</label>
