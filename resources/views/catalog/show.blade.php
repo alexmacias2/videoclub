@@ -60,6 +60,8 @@
         @endif
         <a href="{{url('catalog/edit/'.$pelicula->id)}}" class="btn btn-warning">Editar película</a>
         <a href="{{url('catalog')}}" class="btn btn-info">Volver al listado</a>
+        
+        <a href="{{url('catalog/pdf/'.$pelicula->id)}}" class="btn btn-info">Descargar a PDF</a>
 
         <form action="{{action('CatalogController@deleteMovie', $pelicula->id)}}" 
               method="POST" style="display:inline">

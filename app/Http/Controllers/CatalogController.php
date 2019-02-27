@@ -8,6 +8,7 @@ use App\Genero;
 use App\MoviesUser;
 use Illuminate\Database;
 use Notification;
+use PDF;
 
 class CatalogController extends Controller {
 
@@ -130,6 +131,21 @@ class CatalogController extends Controller {
     public function getIndexGenero($id){
         $moviesGenero = Movie::where('idgenero', '=', $id)->get();
         return view('catalog.indexGenero', array('arrayPeliculas' => $moviesGenero));
+    }
+    
+    public function getPdfMovie($id){
+        $movie = Movie::findOrFail($id);
+        $genero = Genero::findOrFail($movie->idgenero);
+        $userid = auth()->user()->id;
+        if (MoviesUser::where('user_id', '=', $userid)
+                        ->where('movie_id', '=', $id)
+                        ->first() != null) {
+            $favorita = true;
+        } else {
+            $favorita = false;
+        }
+       $pdf = PDF::loadView('catalog.infoPeli', array('pelicula' => $movie, 'genero' => $genero, 'userid' => $userid, 'favorita' => $favorita));
+       return $pdf->download('pelicula.pdf');
     }
 
 }

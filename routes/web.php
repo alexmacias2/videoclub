@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('catalog/delete/{id}', 'CatalogController@deleteMovie');
     Route::put('catalog/edit/{id}', 'CatalogController@putEdit');
     Route::get('catalog/indexFavoritas', 'CatalogController@getFavoritas');
+    Route::get('catalog/pdf/{id}', 'CatalogController@getPdfMovie');
     
    
 });
