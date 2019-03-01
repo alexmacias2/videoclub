@@ -33,10 +33,10 @@ class DatabaseSeeder extends Seeder {
     }
 
     private function seedGeneros() {
-        //DB::table('generos')->delete();
-//        $Genero1 = new Genero();
-//        $Genero1->nombregenero='Acción';
-//        $Genero1->save();
+        DB::table('generos')->delete();
+        $Genero1 = new Genero();
+        $Genero1->nombregenero='Acción';
+        $Genero1->save();
         $Genero2 = new Genero();
         $Genero2->nombregenero='Terror';
         $Genero2->save();

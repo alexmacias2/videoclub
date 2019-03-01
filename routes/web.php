@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('/', 'HomeController@getHome');
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 //Route::get('logout', function () {
 //    return 'Logout usuario';
 //});
