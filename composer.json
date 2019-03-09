@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^0.8.3",
         "edvinaskrucas/notification": "5.*",
         "fideloper/proxy": "~3.3",
+        "greggilbert/recaptcha": "^2.2",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",

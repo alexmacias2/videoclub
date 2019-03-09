@@ -180,6 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Krucas\Notification\NotificationServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
 
 
     ],
@@ -233,6 +234,7 @@ return [
         'Notification' => Krucas\Notification\Facades\Notification::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
     ],
 
 ];
