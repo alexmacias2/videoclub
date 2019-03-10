@@ -53,8 +53,14 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('google')->stateless()->user();
+        $userSocial = Socialite::driver('google')->stateless()->user();
+        $user = User::where(['email'=>$userSocial->getEmail()])->first();
+        if ($user) {
+            Auth::login($user);
+            return redirect()->action('CatalogController@getIndex');
+        }else{
+            return view('auth.register',['name'=>$userSocial->getName(),'email'=>$userSocial->getEmail()]);
+        }
         
-        return redirect()->action('CatalogController@getIndex');
     }
 }

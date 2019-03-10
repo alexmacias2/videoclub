@@ -11,7 +11,7 @@
         "fideloper/proxy": "~3.3",
         "greggilbert/recaptcha": "^2.2",
         "laravel/framework": "5.5.*",
-        "laravel/socialite": "^3.0",
+        "laravel/socialite": "3.0",
         "laravel/tinker": "~1.0",
         "mews/captcha": "^2.2",
         "mpociot/laravel-composite-key": "^1.0"
